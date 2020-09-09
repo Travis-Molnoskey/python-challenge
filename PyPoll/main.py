@@ -8,8 +8,8 @@ csvpath = os.path.join("..","PyPoll","Resources","election_data.csv")
 #initialize variables
 Votescast = 0
 candidates = []
-candidatepercent=[0.0,0.0,0.0,0.0]
-candidatevotes=[0,0,0,0]
+candidatepercent=[]
+candidatevotes=[]
 winningcandidate = ""
 w = 0
 x = 0
@@ -24,7 +24,12 @@ with open(csvpath) as csvfile:
     for row in votedata:
         if row[2] not in candidates:   #finds unique names of candidates and appends them to list
             candidates.append(row[2])
-        
+
+#initialize lists to same size as candidate count
+for count in range(len(candidates)):
+    candidatevotes.append(0)
+    candidatepercent.append(0.0)
+
 #this with open the file to count total votes as well as votes for each candidate dynamically based on previous candidate list         
 with open(csvpath) as csvfile:
     votedata = csv.reader(csvfile,delimiter = ",")
